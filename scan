@@ -1,4 +1,5 @@
 
+
 package readfile;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class Readfile {
         
         String highStudent=""; 
         String lowStudent = "";
-        int curGrade, gradeSum=0, numGrades=0, highGrade = 0, lowGrade = 0;
+        int curGrade, gradeSum=0, numGrades=0, highGrade = 0, lowGrade = 101;
         String curStudent;
         System.out.println("Student Grade Report\n");
         
@@ -39,11 +40,11 @@ public class Readfile {
         if(curGrade < lowGrade){
             
             lowStudent = curStudent;
-        
+            lowGrade = curGrade;
         }
         gradeSum = gradeSum + curGrade;
         numGrades++;
-        lowGrade = curGrade;
+        
         }
         input.close();
         
@@ -56,3 +57,4 @@ public class Readfile {
     }
     
 }
+
