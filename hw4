@@ -1,0 +1,178 @@
+
+package hw4;
+import java.util.Scanner;
+public class Hw4 {
+
+    public static void main(String[] args) {
+        
+    // Declare main method vars and arrays here.
+    int [] first = new int[50];
+    int [] second = new int[50];
+    System.out.print("Primes per Fifty:\n");
+    
+    for (int low=0, hi=49; hi < 400; low=hi+1, hi=hi+50)
+    {
+        System.out.print(low+"-"+hi+": ");
+        printPrimesOnRange(low, hi);
+    }
+    
+    System.out.println();
+    
+    System.out.print("Leap Years per Fifty (Years 1000-2049):\n");
+    
+    for (int low=1000, hi=1049; hi < 2050; low=hi+1, hi=hi+50)
+        System.out.print(numberOfLeapYears(low, hi) + " ");
+    
+    System.out.println();
+    
+//    readIntsTextFile(first, 35, "june.txt");
+//    
+//    System.out.println("\nJune Array: ");
+    
+//    printArray(first, 20);
+//    printArray(first, 32);
+//    
+//    readIntsTextFile(second, 30, "april.txt");
+//    
+//    System.out.println("April Array: ");
+//    
+//    printArray(second, 15);
+//    printArray(second, 25);
+//    
+//    System.out.print("\nLargest: ");
+//    
+//    for (int i=3; i<32; i=i+3)
+//    System.out.print(largestInArray(first, i)+" ");
+//    System.out.print(" ----- ");
+//    
+//    for (int i=3; i<30; i=i+3)
+//    System.out.print(largestInArray(second, i)+" ");
+//    
+//    System.out.print("\nLargest Gaps: ");
+//    
+//    for (int i=3; i<32; i=i+3)
+//    System.out.print(largestGapInArray(first, i)+" ");
+//    
+//    System.out.print(" ----- ");
+//    
+//    for (int i=3; i<30; i=i+3)
+//        System.out.print(largestGapInArray(second, i)+" ");
+//    
+    System.out.println("\n\nTesting complete.");
+
+    } // Void main end
+    
+    //==============================================================
+    
+    // Method 1   
+    public static boolean isDivisibleBy(int num, int denom){
+        
+       
+       // checking for the remainder of mod division
+       
+       if(num%denom == 0){
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+       
+    }
+    
+    //==============================================================
+    
+    // Method 2   
+    public static boolean isPrime(int x){
+        for(int i = 2; i <= (x/i); ++i) {
+            if(x % i == 0) {
+                return false;
+            }
+        }
+        return true;
+      
+    }
+    
+    //==============================================================
+    
+    // Method 3  
+    public static void printPrimesOnRange(int start, int finish) {
+        
+         
+        for(int i=start;i<=finish;i++) {
+            //check if this number is prime
+            if(isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+    //==============================================================
+    
+    // Method 4 
+    public static boolean LeapYear(int year) {
+       boolean boolOutput4 = false;
+       
+       boolean firstCheck = isDivisibleBy(year, 4);
+       boolean secondCheck = isDivisibleBy(year, 100);
+       boolean thirdCheck = isDivisibleBy(year, 400);
+       
+       if(firstCheck== true && secondCheck==true || thirdCheck==true){
+           boolOutput4 = true;
+       }
+       
+    return boolOutput4;
+    }
+    
+    //==============================================================
+    
+    // Method 5   
+    public static int numberOfLeapYears(int startYear, int endYear) {
+        
+       
+       
+       do{
+       
+             int intOutput1 = 0;  
+               for (int i = 0; i<50;i++){
+                   
+                  
+                   
+                   if(LeapYear(startYear)){
+                        intOutput1++;
+                   }
+                   
+                   startYear++;
+               }
+               
+          
+           return intOutput1;
+           
+  
+       }while(startYear != endYear);
+       
+      
+    }
+    
+    //==============================================================
+    
+    // Method 6
+    
+    public static int readIntsTextFile(int [] a, int n, String fileName) throws Exception {
+
+        java.io.File file = new java.io.File(fileName);
+        Scanner input = new Scanner(file);
+        
+        int scannerCount = 0;
+        a = new int[101];
+         while (input.hasNext())    // Read the whole file
+        {
+         
+         
+         
+        
+         }
+         return 6;
+    }
+    
+}
