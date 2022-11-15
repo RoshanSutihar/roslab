@@ -1,0 +1,43 @@
+package Week9;
+
+public class MovingCircle {
+    
+    private int radius;
+    private Point center;
+    
+    public MovingCircle() {
+        this.radius = 1;
+        this.center = new Point();
+    }
+    
+    public MovingCircle(int radius, Point center) {
+        this.radius = radius;
+        this.center = center;
+    }
+    
+    public int getRadius() {
+        return radius;
+    }
+    
+    public Point getCenter() {
+        return center;
+    }
+    
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+    
+    public void setCenter(Point center) {
+        this.center = center;
+    }
+    
+    public boolean overlaps(MovingCircle c) {
+        return center.distanceTo(c.getCenter()) < radius + c.getRadius();
+    }
+    
+    @Override
+    public String toString() {
+        return "[radius=" + radius + "@" + center.toString() + "]";
+    }
+    
+}

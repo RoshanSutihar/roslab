@@ -1,0 +1,29 @@
+package Week9;
+
+public class TestMovingCircles {
+    
+    public static void main(String[] args) {
+        
+        MovingCircle[] circleArray = new MovingCircle[10];
+        
+        Die radius = new Die();
+        Die center1 = new Die(10), center2 = new Die(10);
+        
+        for (int i=0; i<10; i++) {
+            radius.roll();
+            center1.roll();
+            center2.roll();
+            Point center = new Point(center1.getFaceValue(), center2.getFaceValue());
+            circleArray[i] = new MovingCircle(radius.getFaceValue(), center);
+        }
+        
+        for (int i=0; i<10; i++) {
+            for (int j=i+1; j<10; j++) {
+                if (circleArray[i].overlaps(circleArray[j]))
+                    System.out.println("Circle " + i + " " + circleArray[i] + " overlaps with circle " + j + " " + circleArray[j] + ".");
+            }
+        }
+        
+    }
+    
+}

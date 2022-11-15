@@ -1,0 +1,28 @@
+package Week9;
+
+public class Die {
+    
+    private int numFaces;
+    private int faceValue;
+    
+    public Die() {
+        numFaces = 6;
+    }
+    
+    public Die(int numFaces) {
+        this.numFaces = numFaces;
+    }
+    
+    public int getFaceValue() {
+        return faceValue;
+    }
+    
+    public void setFaceValue(int newValue) {
+        faceValue = newValue;
+    }
+    
+    public void roll() {
+        faceValue = (int)((Math.random()*(numFaces))+1);
+    }
+    
+}

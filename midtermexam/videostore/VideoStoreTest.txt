@@ -1,0 +1,93 @@
+package VideoStores;
+
+import java.util.Scanner;
+
+public class VideoStoreTest {
+    
+    public static void main(String[]args) throws Exception {
+        
+        Scanner scan = new Scanner(System.in);
+        
+        
+        System.out.print("What will your first store be named? ");
+        String storeName = scan.nextLine();
+        
+        System.out.print("How many of the top 100 movies would you like in your store " + storeName + "? ");
+        int numMovies = scan.nextInt();
+        
+        VideoStore store1 = new VideoStore(storeName,numMovies);
+        
+        store1.loadCatalog("catalog.txt");
+        System.out.println(store1);
+        
+        System.out.println();
+        System.out.println("Movies created: " + VideoStore.getMoviesCreated());
+        System.out.println();
+        
+        
+        scan.nextLine();
+        System.out.print("What will your second store be named? ");
+        storeName = scan.nextLine();
+        
+        System.out.print("How many of the top 100 movies would you like in store " + storeName + "? ");
+        numMovies = scan.nextInt();
+        
+        VideoStore store2 = new VideoStore(storeName,numMovies);
+        
+        store2.loadCatalog("catalog.txt");
+        System.out.println(store2);
+        
+        System.out.println();
+        System.out.println("Movies created: " + VideoStore.getMoviesCreated());
+        System.out.println();
+        
+        
+        int findBy = 0;
+        
+        while (findBy<2) {
+            
+            System.out.print("Find " + store1.getStoreName() + " movie by name (1) or id (0)? ");
+            
+            findBy = scan.nextInt();
+
+            if (findBy == 1){
+                System.out.print("Name: ");
+                scan.nextLine();
+                String name = scan.nextLine();
+                System.out.println(name);
+                System.out.println(store1.findMovie(name) + "\n");
+            }
+            if (findBy == 0) {
+                System.out.print("id: ");
+                int id = scan.nextInt();
+                System.out.println(store1.findMovie(id) + "\n");
+            }
+
+        }
+        
+        findBy = 0;
+        
+        while (findBy<2) {
+            
+            System.out.print("Find " + store2.getStoreName() + " movie by name (1) or id (0)? ");
+            
+            findBy = scan.nextInt();
+
+            if (findBy == 1){
+                System.out.print("Name: ");
+                scan.nextLine();
+                String name = scan.nextLine();
+                System.out.println(name);
+                System.out.println(store2.findMovie(name) + "\n");
+            }
+            if (findBy == 0) {
+                System.out.print("id: ");
+                int id = scan.nextInt();
+                System.out.println(store2.findMovie(id) + "\n");
+            }
+
+        }
+        
+    }
+    
+}

@@ -1,0 +1,119 @@
+package VideoStores;
+
+import java.util.Scanner;
+
+public class VideoStore {
+            
+    private String storeName;
+    private int numMovies;
+    private Movie[] catalog;
+    
+    private static int moviesCreated = 0;
+    
+    
+    public VideoStore() {
+        this.storeName = "Unnamed Video Store";
+        this.numMovies = 100;
+        this.catalog = new Movie[numMovies + 1];
+        this.moviesCreated = moviesCreated + numMovies;
+    }
+    
+    public VideoStore(String storeName) {
+        this.storeName = storeName;
+        this.numMovies = 100;
+        this.catalog = new Movie[numMovies + 1];
+        this.moviesCreated = moviesCreated + numMovies;
+    }
+    
+    public VideoStore(String storeName, int numMovies) {
+        this.storeName = storeName;
+        this.numMovies = numMovies;
+        this.catalog = new Movie[numMovies + 1];
+        this.moviesCreated = moviesCreated + numMovies;
+    }
+    
+    
+    public String getStoreName() {
+        return storeName;
+    }
+    
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+    
+    public int getNumMovies() {
+        return numMovies;
+    }
+    
+    public void setNumMovies(int numMovies) {
+        this.numMovies = numMovies;
+    }
+    
+    public Movie[] getCatalog() {
+        return catalog;
+    }
+    
+    public static int getMoviesCreated() {
+        return moviesCreated;
+    }
+    
+    public void loadCatalog(String fileName) throws Exception {
+        
+        java.io.File file = new java.io.File(fileName);
+        Scanner input = new Scanner(file);
+        
+        while (input.hasNext()) {
+            
+            int curID = input.nextInt();
+            
+            if (curID <= this.numMovies) {
+                
+                String curTitleAndYear = input.nextLine();
+                                
+                String curTitle = curTitleAndYear.substring(1, curTitleAndYear.length()-7);
+                int curYear = Integer.parseInt(curTitleAndYear.substring(curTitle.length()+3,curTitle.length()+7));
+                
+                catalog[curID] = new Movie(curID, curTitle, curYear);
+                                
+            }
+            
+            else input.nextLine();
+            
+        }
+        
+        input.close();
+        
+    }
+    
+    public Movie findMovie(String title) {
+        
+        Movie movieFound = catalog[0];
+        
+        for (int i=1; i<catalog.length; i++)
+            if (catalog[i].getTitle().equals(title))
+                movieFound = catalog[i];
+        
+        return movieFound;
+        
+    }
+    
+    public Movie findMovie(int id) {
+        
+        return catalog[id];
+        
+    }
+    
+    @Override
+    public String toString() {
+        
+        String catalogString = this.storeName + " (" + numMovies + " movies)" + "\n--------\n\n";
+        
+        for (int i=1; i<catalog.length-1; i++)
+            catalogString = catalogString + catalog[i] + "\n";
+        catalogString = catalogString + catalog[catalog.length-1];
+        
+        return catalogString;
+        
+    }
+    
+}
